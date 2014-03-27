@@ -12,6 +12,9 @@ app.factory('Channel', function ($firebase, FIREBASE_URL) {
 		find: function(channelId) {
 			return channels.$child(channelId);
 		},
+		update: function(channelId, channel) {
+			return channels.$child(channelId).$update(channel);
+		},
 		delete: function(channelId) {
 			return channels.$remove(channelId);
 		}
