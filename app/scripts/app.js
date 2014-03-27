@@ -2,11 +2,12 @@
 
 'use strict';
 
-var app = angular.module('rgaviewApp', [
+var app = angular.module('riversApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
-  'ngRoute'
+  'ngRoute',
+  'firebase'
 ]);
 
 app.config( function ($routeProvider) {
@@ -15,7 +16,7 @@ app.config( function ($routeProvider) {
       templateUrl: 'views/dashboard.html',
       controller: 'DashboardController'
     })
-    .when('/:channelName', {
+    .when('/:channelId', {
       templateUrl: 'views/channel.html',
       controller: 'ChannelController'
     })
@@ -23,3 +24,5 @@ app.config( function ($routeProvider) {
       redirectTo: '/'
     });
 });
+
+app.constant('FIREBASE_URL', 'https://sizzling-fire-9212.firebaseio.com/');

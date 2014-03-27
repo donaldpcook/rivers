@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('ChannelController', function ($scope, $routeParams) {
-	$scope.channelName = $routeParams.channelName;
-
+app.controller('ChannelController', function ($scope, $routeParams, Channel) {
+	console.log($routeParams);
+	$scope.channel = Channel.find($routeParams.channelId);
 });

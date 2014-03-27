@@ -1,10 +1,11 @@
 
 Channels: 
-<div ng-repeat="channel in channels">
-  <a href="#/{{ channel.name }}">{{ channel.name }}</a><span ng-if="channel.selected">*</span> 
-  <a ng-click="deleteChannel($index)">x</a>
+<div ng-repeat="(channelId, channel) in channels">
+  <a href="#/{{ channelId }}">{{ channel.name }}</a><span ng-if="channel.selected">*</span> 
+  <a ng-click="deleteChannel(channelId)">x</a>
 </div>
 <form ng-submit="addChannel()">
   <input type="text" ng-model="channel.name" />
   <input type="submit" value="Add Channel" />
 </form>
+<a href="#">Dashboard</a>

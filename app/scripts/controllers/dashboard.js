@@ -1,5 +1,6 @@
 'use strict';
 
-app.controller('DashboardController', function ($scope, $routeParams) {
+app.controller('DashboardController', function ($scope) {
+	$scope.message = 'Welcome to Rivers!';
 
 });

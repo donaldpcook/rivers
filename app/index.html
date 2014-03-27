@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
   </head>
-  <body ng-app="rgaviewApp">
+  <body ng-app="riversApp">
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -31,6 +31,9 @@
           <div class="col-sm-3" ng-include="'views/channels.html'"></div>
         </div>
         <div class="col-sm-9" ng-view></div>
+      </div>
+      <div class="row">
+        put the chat input box here
       </div>
     </div>
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
@@ -58,6 +61,9 @@
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/firebase/firebase.js"></script>
+    <script src="bower_components/firebase-simple-login/firebase-simple-login.js"></script>
+    <script src="bower_components/angularfire/angularfire.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -66,6 +72,7 @@
         <script src="scripts/controllers/channelNav.js"></script>
         <script src="scripts/controllers/channelMain.js"></script>
         <script src="scripts/controllers/dashboard.js"></script>
+        <script src="scripts/services/channel.js"></script>
         <!-- endbuild -->
 </body>
 </html>
