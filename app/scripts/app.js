@@ -5,5 +5,21 @@
 var app = angular.module('rgaviewApp', [
   'ngCookies',
   'ngResource',
-  'ngSanitize'
+  'ngSanitize',
+  'ngRoute'
 ]);
+
+app.config( function ($routeProvider) {
+  $routeProvider
+    .when('/',{
+      templateUrl: 'views/dashboard.html',
+      controller: 'DashboardController'
+    })
+    .when('/:channelName', {
+      templateUrl: 'views/channel.html',
+      controller: 'ChannelController'
+    })
+    .otherwise({
+      redirectTo: '/'
+    });
+});

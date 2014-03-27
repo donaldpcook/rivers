@@ -1,7 +1,7 @@
 
 Channels: 
 <div ng-repeat="channel in channels">
-  <a ng-click="selectChannel($index)">{{ channel.name }}</a><span ng-if="channel.selected">*</span> 
+  <a href="#/{{ channel.name }}">{{ channel.name }}</a><span ng-if="channel.selected">*</span> 
   <a ng-click="deleteChannel($index)">x</a>
 </div>
 <form ng-submit="addChannel()">
