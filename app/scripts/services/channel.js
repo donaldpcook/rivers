@@ -7,6 +7,7 @@ app.factory('Channel', function ($firebase, FIREBASE_URL) {
 	var Channel = {
 		all: channels,
 		create: function(channel) {
+			channel.createdAt = new Date().getTime();
 			return channels.$add(channel);
 		},
 		find: function(channelId) {
