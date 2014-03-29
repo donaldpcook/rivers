@@ -5,7 +5,7 @@ app.controller('ChannelController', function ($scope, $routeParams, Channel) {
 
 	$scope.addMessage = function () {
 		$scope.message.createdAt = new Date().getTime();
-		if ($scope.channel.messages == null) {
+		if ($scope.channel.messages === undefined) {
 			$scope.channel.messages = [];
 		}
 		$scope.channel.messages.push($scope.message);

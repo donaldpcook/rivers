@@ -7,7 +7,8 @@ var app = angular.module('riversApp', [
   'ngResource',
   'ngSanitize',
   'ngRoute',
-  'firebase'
+  'firebase',
+  'services.config'
 ]);
 
 app.config( function ($routeProvider) {
@@ -24,5 +25,3 @@ app.config( function ($routeProvider) {
       redirectTo: '/'
     });
 });
-
-app.constant('FIREBASE_URL', 'https://sizzling-fire-9212.firebaseio.com/');

@@ -1,7 +1,7 @@
 'use strict';
 
-app.factory('Channel', function ($firebase, FIREBASE_URL) {
-	var ref = new Firebase(FIREBASE_URL + 'channels');
+app.factory('Channel', function ($firebase, configuration) {
+	var ref = new Firebase(configuration.FIREBASE_URL + 'channels');
 	var channels = $firebase(ref);
 
 	var Channel = {
