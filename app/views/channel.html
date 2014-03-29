@@ -5,7 +5,7 @@
 	<p>{{ message.text}} <span class="small text-info">{{ message.createdAt | date: 'yyyy-MM-dd hh:mma'}}</span></p>
 </div>
 
-Chat input:
+Add a message:
 <form ng-submit="addMessage()">
 	<input type="text" ng-model="message.text"/>
 	<input type="submit" value="Send" />
