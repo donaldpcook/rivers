@@ -3,5 +3,5 @@ dist
 .tmp
 .sass-cache
 app/bower_components
-app/services/config.js
+app/scripts/services/config.js
 config/environments
