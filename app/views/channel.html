@@ -1,7 +1,8 @@
-Welecome to channel: {{ channel.name }}
+<h3>{{ channel.name }}</h3>
+
 
 <div ng-repeat="message in channel.messages">
-	{{ message.text}}<br/>
+	<p>{{ message.text}} <span class="small text-info">{{ message.createdAt | date: 'yyyy-MM-dd hh:mma'}}</span></p>
 </div>
 
 Chat input:

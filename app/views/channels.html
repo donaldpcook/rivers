@@ -1,5 +1,6 @@
 
 <h3>Channels</h3>
+<a href="#"><span class="glyphicon glyphicon-home"></span></a>
 <ul class="list-unstyled">
 <div ng-repeat="(channelId, channel) in channels">
   <li class="text-left"><a href="#/{{ channelId }}">{{ channel.name }}</a></li>
@@ -7,11 +8,9 @@
 </ul>
 
 <form role="form" class="form-inline" ng-submit="addChannel()">
-<div class="col-md-8">
 	<input type="text" class="form-control input-sm" id="newChannel" ng-model="channel.name" 
 		placeholder="Channel name"/>
-</div>
-  	<button type="submit" class="btn btn-link btn-xs">Add</button>
+  	<button type="submit" class="btn btn-mini">Add</button>
 </form>
 
-<h4 class="small"><a href="#">Return to Dashboard</a></h4>
+
