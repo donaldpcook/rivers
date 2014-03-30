@@ -11,14 +11,25 @@
 
 <p>Add a message:</p>
 <form ng-submit="addMessage()">
-	<input type="text" ng-model="message.text"/>
+	<input type="text" ng-model="message.text" ng-required="true"/>
 	<button type="submit" class="btn btn-mini">Add</button>
 </form>
 
 <p>Add an event</p>
 <form ng-submit="addEvent()">
-	<input type="text" ng-model="event.title"/>
-	<!-- TODO: add datepicker -->
-	<input type="text" ng-model="event.date"/>
+	<input type="text" ng-model="event.title" ng-requred="true"/>
+	<p class="input-group">
+		<input type="text" ng-model="event.date" ng-required="true" class="form-control" 
+		datepicker-popup="{{format}}"
+		is-open="opened"
+		min="minDate"
+		datepicker-options="dateOptions"
+		close-text="Close"
+		show-weeks="false"\
+		show-button-bar="false"/>
+		<span class="input-group-btn">
+			<button class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+		</span>
+	</p>
 	<button type="submit" class="btn btn-mini">Add</button>
 </form>

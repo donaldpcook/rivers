@@ -24,6 +24,28 @@ app.controller('ChannelController', function ($scope, $routeParams, Channel) {
 		}
 		$scope.channel.events.push($scope.event);
 		Channel.update($routeParams.channelId, $scope.channel);
+		//TODO: Properly re-initialize UI? This doesn't seem right.
+		$scope.event.title = '';
+		$sceop.event.date = '';
 
-	}
+
+	};
+	
+	$scope.today = function() {
+		$scope.dt = new Date();
+	};
+	$scope.today();
+
+	$scope.clear = function () {
+		$scope.dt = null;
+	};
+
+	$scope.open = function($event) {
+		$event.preventDefault();
+		$event.stopPropagation();
+		$scope.opened = true;
+	};
+	$scope.minDate = new Date();
+	$scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'shortDate'];
+	$scope.format = $scope.formats[0];
 });

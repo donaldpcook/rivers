@@ -8,7 +8,8 @@ var app = angular.module('riversApp', [
   'ngSanitize',
   'ngRoute',
   'firebase',
-  'services.config'
+  'services.config',
+  'ui.bootstrap'
 ]);
 
 app.config( function ($routeProvider) {
