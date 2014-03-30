@@ -2,11 +2,23 @@
 
 
 <div ng-repeat="message in channel.messages">
-	<p>{{ message.text}} <span class="small text-info">{{ message.createdAt | date: 'yyyy-MM-dd hh:mma'}}</span></p>
+	<p>{{ message.text }} <span class="small text-info">{{ message.createdAt | date: 'yyyy-MM-dd hh:mma'}}</span></p>
 </div>
 
-Add a message:
+<div ng-repeat="event in channel.events">
+	<p><span class="glyphicon glyphicon-calendar"></span> {{ event.title }}</p>
+</div>
+
+<p>Add a message:</p>
 <form ng-submit="addMessage()">
 	<input type="text" ng-model="message.text"/>
-	<input type="submit" value="Send" />
+	<button type="submit" class="btn btn-mini">Add</button>
+</form>
+
+<p>Add an event</p>
+<form ng-submit="addEvent()">
+	<input type="text" ng-model="event.title"/>
+	<!-- TODO: add datepicker -->
+	<input type="text" ng-model="event.date"/>
+	<button type="submit" class="btn btn-mini">Add</button>
 </form>
