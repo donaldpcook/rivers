@@ -1,7 +1,7 @@
 'use strict';
 
-app.controller('ChannelController', function ($scope, $routeParams, Channel) {
-	$scope.channel = Channel.find($routeParams.channelId);
+app.controller('ChannelController', function ($scope, $routeParams, ChannelService) {
+	$scope.channel = ChannelService.find($routeParams.channelId);
 
 	$scope.addMessage = function () {
 		$scope.message.createdAt = new Date().getTime();
@@ -11,7 +11,7 @@ app.controller('ChannelController', function ($scope, $routeParams, Channel) {
 			$scope.channel.messages = [];
 		}
 		$scope.channel.messages.push($scope.message);
-		Channel.update($routeParams.channelId, $scope.channel);
+		ChannelService.update($routeParams.channelId, $scope.channel);
 		
 		//TODO: Properly re-initialize UI? This doesn't seem right.
 		$scope.message.text = '';
@@ -23,7 +23,7 @@ app.controller('ChannelController', function ($scope, $routeParams, Channel) {
 			$scope.channel.events = [];
 		}
 		$scope.channel.events.push($scope.event);
-		Channel.update($routeParams.channelId, $scope.channel);
+		ChannelService.update($routeParams.channelId, $scope.channel);
 		//TODO: Properly re-initialize UI? This doesn't seem right.
 		$scope.event.title = '';
 		$sceop.event.date = '';
