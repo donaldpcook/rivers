@@ -11,7 +11,8 @@ app.factory('ChannelService', function ($firebase, configuration) {
 			return channels.$add(channel);
 		},
 		find: function(channelId) {
-			return channels.$child(channelId);
+			var foundChannel = channels.$child(channelId);
+			return foundChannel;
 		},
 		update: function(channelId, channel) {
 			return channels.$child(channelId).$update(channel);

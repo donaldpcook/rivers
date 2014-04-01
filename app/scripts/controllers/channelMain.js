@@ -4,33 +4,39 @@ app.controller('ChannelController', function ($scope, $routeParams, ChannelServi
 	$scope.channel = ChannelService.find($routeParams.channelId);
 
 	$scope.addMessage = function () {
-		$scope.message.createdAt = new Date().getTime();
+		var newMessage = $scope.message;
+		newMessage.text = newMessage.text.trim();
+		if (newMessage.text.length) {
+			newMessage.createdAt = new Date().getTime();
+			if(!$scope.channel.messages) {
+				$scope.channel.messages = [];
+			}
+			$scope.channel.messages.push(newMessage);
+			ChannelService.update($routeParams.channelId, $scope.channel);
 		
-		//TODO: properly instatiate model object. This doesn't seem right.
-		if ($scope.channel.messages === undefined) {
-			$scope.channel.messages = [];
+			$scope.message.text = '';
 		}
-		$scope.channel.messages.push($scope.message);
-		ChannelService.update($routeParams.channelId, $scope.channel);
-		
-		//TODO: Properly re-initialize UI? This doesn't seem right.
-		$scope.message.text = '';
 	};
 
 	$scope.addEvent = function () {
-		$scope.event.createdAt = new Date().getTime();
-		if ($scope.channel.events === undefined) {
-			$scope.channel.events = [];
+		var newEvent = $scope.event;
+		newEvent.title = newEvent.title.trim();
+		if (newEvent.title.length){
+			newEvent.createdAt = new Date().getTime();
+			if(!$scope.channel.events) {
+				$scope.channel.events = [];
+			}
+			$scope.channel.events.push(newEvent);
+			ChannelService.update($routeParams.channelId, $scope.channel);
 		}
-		$scope.channel.events.push($scope.event);
-		ChannelService.update($routeParams.channelId, $scope.channel);
-		//TODO: Properly re-initialize UI? This doesn't seem right.
+		
 		$scope.event.title = '';
-		$sceop.event.date = '';
-
-
+		$scope.event.date = '';
 	};
 	
+	/*
+	Date Picker behaviors and configuration
+	*/
 	$scope.today = function() {
 		$scope.dt = new Date();
 	};

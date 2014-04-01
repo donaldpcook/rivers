@@ -2,13 +2,17 @@
 
 app.controller('ChannelNavController', function ($scope, $routeParams, ChannelService) {
 	$scope.channels = ChannelService.all;
-	$scope.channel = {name: ''};
 	$scope.selectedChannel = $routeParams.index;
+	$scope.channel = {name: ''};
 
 	$scope.addChannel = function () {
-		ChannelService.create($scope.channel).then(function() {
-			$scope.channel = {name: ''};
-		});
+		var newChannel = $scope.channel;
+		newChannel.name = newChannel.name.trim();
+		if (newChannel.name.length) {
+			ChannelService.create(newChannel).then(function() {
+				$scope.channel = {name: ''};
+			});
+		}
 	};
 
 	$scope.deleteChannel = function (channelId) {
