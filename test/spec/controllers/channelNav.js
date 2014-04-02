@@ -2,7 +2,7 @@
 
 describe('Controller: ChannelNavController', function() {
 
-	var TestChannelNavController, mockChannelService, scope, testChannelName;
+	var TestChannelNavController, mockChannelService, scope, q, deferred, testChannelName;
 	testChannelName = 'foo';
 
 	beforeEach(module('riversApp'));
@@ -10,24 +10,31 @@ describe('Controller: ChannelNavController', function() {
 	beforeEach(inject());
 	
 	beforeEach(function() {
-		angular.mock.module('ChannelService', []);
+		mockChannelService = {
+			create: function() {
+				deferred = q.defer();
+				return deferred.promise;
+			}
+		};
 	});
 
-	beforeEach(inject(function($rootScope, $controller) {
+	beforeEach(inject(function($rootScope, $controller, $q) {
 		scope = $rootScope.$new();
-
+		q = $q;
 		TestChannelNavController = $controller('ChannelNavController', {
 			$scope: scope,
-			$routeParams: {}
+			$routeParams: {},
+			ChannelService: mockChannelService
 		});
 
 	}));
 
-	it('should add a new Channel via the ChannelService and reset the channel in the scope', function() {
+	it('should call create on the channel service when addChannel is called', function() {
+		spyOn(mockChannelService,'create').andCallThrough();
 		scope.channel = {name: testChannelName};
 		scope.addChannel();
-		expect(mockChannelService.created).toBe(true);
-		expect(mockChannelService.createdName).toBe(testChannelName);
+		deferred.resolve();
+		expect(mockChannelService.create).toHaveBeenCalled();
 	});
 
 });
