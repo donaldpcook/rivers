@@ -44,7 +44,7 @@ describe('Controller: ChannelController', function() {
 
 	it('should call update on the channel service when addEvent is called', function() {
 		spyOn(mockChannelService, 'update').andCallThrough();
-		scope.event = {title: 'testTitle'};
+		scope.event = {text: 'testTitle'};
 		scope.addEvent();
 		expect(mockChannelService.update).toHaveBeenCalled();
 		expect(scope.channel.objects.length).toBe(1);
