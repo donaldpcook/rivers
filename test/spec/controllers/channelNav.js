@@ -7,8 +7,6 @@ describe('Controller: ChannelNavController', function() {
 
 	beforeEach(module('riversApp'));
 
-	beforeEach(inject());
-	
 	beforeEach(function() {
 		mockChannelService = {
 			create: function() {
