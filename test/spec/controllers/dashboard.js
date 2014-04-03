@@ -15,7 +15,7 @@ describe('Controller: DashboardController', function() {
 
 	it('should have a welcome message in the scope', function() {
 		expect(scope.message).toNotBe(undefined);
-		expect(giscope.message).toNotBe(null);
+		expect(scope.message).toNotBe(null);
 	});
 
 });
