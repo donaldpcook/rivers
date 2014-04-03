@@ -14,8 +14,12 @@ describe('Controller: ChannelNavController', function() {
 			create: function() {
 				deferred = q.defer();
 				return deferred.promise;
+			},
+			delete: function() {
+				return true;
 			}
 		};
+
 	});
 
 	beforeEach(inject(function($rootScope, $controller, $q) {
@@ -30,11 +34,18 @@ describe('Controller: ChannelNavController', function() {
 	}));
 
 	it('should call create on the channel service when addChannel is called', function() {
-		spyOn(mockChannelService,'create').andCallThrough();
+		spyOn(mockChannelService,'create').andCallThrough();		
 		scope.channel = {name: testChannelName};
 		scope.addChannel();
 		deferred.resolve();
-		expect(mockChannelService.create).toHaveBeenCalled();
+		expect(mockChannelService.create).toHaveBeenCalledWith(scope.channel);
+	});
+
+	it('should call delete on the channel service when deleteChannel is called', function() {
+		spyOn(mockChannelService,'delete').andCallThrough();
+		scope.channelId = testChannelName;
+		scope.deleteChannel(scope.channelId);
+		expect(mockChannelService.delete).toHaveBeenCalledWith(testChannelName);
 	});
 
 });
