@@ -32,7 +32,7 @@ app.controller('ChannelController', function ($scope, $routeParams, ChannelServi
 			addObjectToChannel(newChannelObject, objectTypes.TASK);
 			$scope.task.text = '';
 		}
-	}
+	};
 	
 	function addObjectToChannel(newObject, type) {
 		newObject.createdAt = new Date().getTime();
