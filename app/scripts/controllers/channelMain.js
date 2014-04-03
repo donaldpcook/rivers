@@ -18,10 +18,21 @@ app.controller('ChannelController', function ($scope, $routeParams, ChannelServi
 		
 		if (newChannelObject.text.length){
 			addObjectToChannel(newChannelObject, objectTypes.EVENT);
-			$scope.event.title = '';
+			$scope.event.text = '';
 			$scope.event.date = '';
 		}
 	};
+
+	$scope.addTask = function() {
+		var newChannelObject = $scope.task;
+		newChannelObject.text = newChannelObject.text.trim();
+
+		if (newChannelObject.text.length){
+			newChannelObject.completed = false;
+			addObjectToChannel(newChannelObject, objectTypes.TASK);
+			$scope.task.text = '';
+		}
+	}
 	
 	function addObjectToChannel(newObject, type) {
 		newObject.createdAt = new Date().getTime();

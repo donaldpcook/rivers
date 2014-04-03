@@ -29,5 +29,6 @@ app.config( function ($routeProvider) {
 
 app.constant('objectTypes', {
   MESSAGE: 1,
-  EVENT: 2
+  EVENT: 2,
+  TASK: 3
 });

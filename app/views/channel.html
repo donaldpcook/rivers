@@ -29,3 +29,9 @@
 	</p>
 	<button type="submit" class="btn btn-mini">Add</button>
 </form>
+
+<p>Add a task</p>
+<form ng-submit="addTask()">
+	<input type="text" ng-model="task.text" ng-required="true"/>
+	<button type="submit" class="btn btn-mini">Add</button>
+</form>

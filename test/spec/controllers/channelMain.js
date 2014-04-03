@@ -50,5 +50,11 @@ describe('Controller: ChannelController', function() {
 		expect(scope.channel.objects.length).toBe(1);
 	});
 
-
+	it('should call update on the channel service when addTask is called', function() {
+		spyOn(mockChannelService, 'update').andCallThrough();
+		scope.task = {text: 'task'};
+		scope.addTask();
+		expect(mockChannelService.update).toHaveBeenCalled();
+		expect(scope.channel.objects.length).toBe(1);
+	});
 });
