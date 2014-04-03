@@ -26,3 +26,8 @@ app.config( function ($routeProvider) {
       redirectTo: '/'
     });
 });
+
+app.constant('objectTypes', {
+  MESSAGE: 1,
+  EVENT: 2
+});

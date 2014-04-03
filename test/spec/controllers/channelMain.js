@@ -18,13 +18,14 @@ describe('Controller: ChannelController', function() {
 
 	});
 
-	beforeEach(inject(function($rootScope, $controller, $routeParams) {
+	beforeEach(inject(function($rootScope, $controller, $routeParams, objectTypes) {
 		scope = $rootScope.$new();
 		scope.channel = {};
 		TestChannelController = $controller('ChannelController', {
 			$scope: scope,
 			$routeParams: {channelId: 'foo'},
-			ChannelService: mockChannelService
+			ChannelService: mockChannelService,
+			objectTypes: objectTypes
 		});
 
 	}));
@@ -38,7 +39,7 @@ describe('Controller: ChannelController', function() {
 		scope.message = {text: 'testMessage'};
 		scope.addMessage();
 		expect(mockChannelService.update).toHaveBeenCalled();
-		expect(scope.channel.messages.length).toBe(1);
+		expect(scope.channel.objects.length).toBe(1);
 	});
 
 	it('should call update on the channel service when addEvent is called', function() {
@@ -46,7 +47,7 @@ describe('Controller: ChannelController', function() {
 		scope.event = {title: 'testTitle'};
 		scope.addEvent();
 		expect(mockChannelService.update).toHaveBeenCalled();
-		expect(scope.channel.events.length).toBe(1);
+		expect(scope.channel.objects.length).toBe(1);
 	});
 
 

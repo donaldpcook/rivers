@@ -5,7 +5,7 @@ describe('Controller: DashboardController', function() {
 	var TestDashboardController, scope;
 	beforeEach(module('riversApp'));
 
-	beforeEach(inject(function($rootScope, $controller, $q) {
+	beforeEach(inject(function($rootScope, $controller) {
 		scope = $rootScope.$new();
 		TestDashboardController = $controller('DashboardController', {
 			$scope: scope

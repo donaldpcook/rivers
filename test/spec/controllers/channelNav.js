@@ -32,7 +32,7 @@ describe('Controller: ChannelNavController', function() {
 	}));
 
 	it('should call create on the channel service when addChannel is called', function() {
-		spyOn(mockChannelService,'create').andCallThrough();		
+		spyOn(mockChannelService,'create').andCallThrough();
 		scope.channel = {name: testChannelName};
 		scope.addChannel();
 		deferred.resolve();

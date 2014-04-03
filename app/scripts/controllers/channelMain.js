@@ -1,39 +1,38 @@
 'use strict';
 
-app.controller('ChannelController', function ($scope, $routeParams, ChannelService) {
+app.controller('ChannelController', function ($scope, $routeParams, ChannelService, objectTypes) {
 	$scope.channel = ChannelService.find($routeParams.channelId);
 
 	$scope.addMessage = function () {
-		var newMessage = $scope.message;
-		newMessage.text = newMessage.text.trim();
-		if (newMessage.text.length) {
-			newMessage.createdAt = new Date().getTime();
-			if(!$scope.channel.messages) {
-				$scope.channel.messages = [];
-			}
-			$scope.channel.messages.push(newMessage);
-			ChannelService.update($routeParams.channelId, $scope.channel);
-		
+		var newChannelObject = $scope.message;
+		newChannelObject.text = newChannelObject.text.trim();
+		if (newChannelObject.text.length) {
+			addObjectToChannel(newChannelObject, objectTypes.MESSAGE);
 			$scope.message.text = '';
 		}
 	};
 
 	$scope.addEvent = function () {
-		var newEvent = $scope.event;
-		newEvent.title = newEvent.title.trim();
-		if (newEvent.title.length){
-			newEvent.createdAt = new Date().getTime();
-			if(!$scope.channel.events) {
-				$scope.channel.events = [];
-			}
-			$scope.channel.events.push(newEvent);
-			ChannelService.update($routeParams.channelId, $scope.channel);
-		}
+		var newChannelObject = $scope.event;
+		newChannelObject.text = newChannelObject.text.trim();
 		
-		$scope.event.title = '';
-		$scope.event.date = '';
+		if (newChannelObject.text.length){
+			addObjectToChannel(newChannelObject, objectTypes.EVENT);
+			$scope.event.title = '';
+			$scope.event.date = '';
+		}
 	};
 	
+	function addObjectToChannel(newObject, type) {
+		newObject.createdAt = new Date().getTime();
+		newObject.type = type;
+		if(!$scope.channel.objects) {
+			$scope.channel.objects = [];
+		}
+		$scope.channel.objects.push(newObject);
+		ChannelService.update($routeParams.channelId, $scope.channel);
+	}
+
 	/*
 	Date Picker behaviors and configuration
 	*/
