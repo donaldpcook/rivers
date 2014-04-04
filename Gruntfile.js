@@ -407,5 +407,8 @@ module.exports = function (grunt) {
 
   grunt.loadNpmTasks('grunt-replace');
 
+  grunt.registerTask('travis', [
+    'replace:travis'
+  ]);
 
 };
