@@ -328,6 +328,19 @@ module.exports = function (grunt) {
           src: ['./config/config.js'],
           dest: '<%= yeoman.app %>/scripts/services/'
         }]
+      },
+      travis: {
+        options: {
+          patterns: [{
+            json: grunt.file.readJSON('./config/environments/travis.json')
+          }]
+        },
+        files: [{
+          expand: true,
+          flatten: true,
+          src: ['./config/config.js'],
+          dest: '<%= yeoman.app %>/scripts/services/'
+        }]
       }
     },
 
