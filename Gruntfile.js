@@ -316,10 +316,10 @@ module.exports = function (grunt) {
     // },
 
     replace: {
-      development: {
+       travis: {
         options: {
           patterns: [{
-            json: grunt.file.readJSON('./config/environments/development.json')
+            json: grunt.file.readJSON('./config/environments/travis.json')
           }]
         },
         files: [{
@@ -329,10 +329,10 @@ module.exports = function (grunt) {
           dest: '<%= yeoman.app %>/scripts/services/'
         }]
       },
-      travis: {
+      development: {
         options: {
           patterns: [{
-            json: grunt.file.readJSON('./config/environments/travis.json')
+            json: grunt.file.readJSON('./config/environments/development.json')
           }]
         },
         files: [{
