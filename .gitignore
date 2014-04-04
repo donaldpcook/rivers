@@ -4,4 +4,4 @@ dist
 .sass-cache
 app/bower_components
 app/scripts/services/config.js
-config/environments
+config/environments/development.json
