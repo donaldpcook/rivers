@@ -18,13 +18,17 @@ app.config( function ($routeProvider) {
       //templateUrl: 'views/dashboard.html',
       //controller: 'DashboardController'
     //})
+    .when('/login', {
+      templateUrl: 'views/account/login.html',
+      controller: 'AccountController'
+    })
+    .when('/signup', {
+      templateUrl: 'views/account/signup.html',
+      controller: 'AccountController'
+    })
     .when('/:channelId', {
       templateUrl: 'views/channel.html',
       controller: 'ChannelController'
-    })
-    .when('/', {
-      templateUrl: 'views/account/signup.html',
-      controller: 'AccountController'
     })
     .otherwise({
       redirectTo: '/'
