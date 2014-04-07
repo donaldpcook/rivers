@@ -1,17 +1,18 @@
 'use strict';
 
-app.factory('Channel', function ($firebase, configuration) {
+app.factory('ChannelService', function ($firebase, configuration) {
 	var ref = new Firebase(configuration.FIREBASE_URL + 'channels');
 	var channels = $firebase(ref);
 
-	var Channel = {
+	var ChannelService = {
 		all: channels,
 		create: function(channel) {
 			channel.createdAt = new Date().getTime();
 			return channels.$add(channel);
 		},
 		find: function(channelId) {
-			return channels.$child(channelId);
+			var foundChannel = channels.$child(channelId);
+			return foundChannel;
 		},
 		update: function(channelId, channel) {
 			return channels.$child(channelId).$update(channel);
@@ -21,5 +22,5 @@ app.factory('Channel', function ($firebase, configuration) {
 		}
 	};
 
-	return Channel;
+	return ChannelService;
 });

@@ -8,7 +8,8 @@ var app = angular.module('riversApp', [
   'ngSanitize',
   'ngRoute',
   'firebase',
-  'services.config'
+  'services.config',
+  'ui.bootstrap'
 ]);
 
 app.config( function ($routeProvider) {
@@ -28,4 +29,10 @@ app.config( function ($routeProvider) {
     .otherwise({
       redirectTo: '/'
     });
+});
+
+app.constant('objectTypes', {
+  MESSAGE: 1,
+  EVENT: 2,
+  TASK: 3
 });

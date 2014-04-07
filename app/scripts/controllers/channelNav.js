@@ -1,17 +1,21 @@
 'use strict';
 
-app.controller('ChannelNavController', function ($scope, $routeParams, Channel) {
-	$scope.channels = Channel.all;
-	$scope.channel = {name: ''};
+app.controller('ChannelNavController', function ($scope, $routeParams, ChannelService) {
+	$scope.channels = ChannelService.all;
 	$scope.selectedChannel = $routeParams.index;
+	$scope.channel = {name: ''};
 
 	$scope.addChannel = function () {
-		Channel.create($scope.channel).then(function() {
-			$scope.channel = {name: ''};
-		});
+		var newChannel = $scope.channel;
+		newChannel.name = newChannel.name.trim();
+		if (newChannel.name.length) {
+			ChannelService.create(newChannel).then(function() {
+				$scope.channel = {name: ''};
+			});
+		}
 	};
 
 	$scope.deleteChannel = function (channelId) {
-		Channel.delete(channelId);
+		ChannelService.delete(channelId);
 	};
 });

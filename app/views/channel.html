@@ -1,12 +1,37 @@
 <h3>{{ channel.name }}</h3>
 
 
-<div ng-repeat="message in channel.messages">
-	<p>{{ message.text}} <span class="small text-info">{{ message.createdAt | date: 'yyyy-MM-dd hh:mma'}}</span></p>
+<div ng-repeat="object in channel.objects">
+	<p>{{ object.text }} <span class="small text-info">{{ object.createdAt | date: 'yyyy-MM-dd hh:mma'}}</span></p>
 </div>
 
-Add a message:
+<p>Add a message:</p>
 <form ng-submit="addMessage()">
-	<input type="text" ng-model="message.text"/>
-	<input type="submit" value="Send" />
+	<input type="text" ng-model="message.text" ng-required="true"/>
+	<button type="submit" class="btn btn-mini">Add</button>
+</form>
+
+<p>Add an event</p>
+<form ng-submit="addEvent()">
+	<input type="text" ng-model="event.text" ng-requred="true"/>
+	<p class="input-group">
+		<input type="text" ng-model="event.date" ng-required="true" class="form-control" 
+		datepicker-popup="{{format}}"
+		is-open="opened"
+		min="minDate"
+		datepicker-options="dateOptions"
+		close-text="Close"
+		show-weeks="false"\
+		show-button-bar="false"/>
+		<span class="input-group-btn">
+			<button class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+		</span>
+	</p>
+	<button type="submit" class="btn btn-mini">Add</button>
+</form>
+
+<p>Add a task</p>
+<form ng-submit="addTask()">
+	<input type="text" ng-model="task.text" ng-required="true"/>
+	<button type="submit" class="btn btn-mini">Add</button>
 </form>
