@@ -13,13 +13,17 @@ var app = angular.module('riversApp', [
 
 app.config( function ($routeProvider) {
   $routeProvider
-    .when('/',{
-      templateUrl: 'views/dashboard.html',
-      controller: 'DashboardController'
-    })
+    //.when('/',{
+      //templateUrl: 'views/dashboard.html',
+      //controller: 'DashboardController'
+    //})
     .when('/:channelId', {
       templateUrl: 'views/channel.html',
       controller: 'ChannelController'
+    })
+    .when('/', {
+      templateUrl: 'views/account/signup.html',
+      controller: 'AccountController'
     })
     .otherwise({
       redirectTo: '/'
