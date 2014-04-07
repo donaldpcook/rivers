@@ -1,3 +1,9 @@
 {
-  "FIREBASE_URL": ""
+  "dc_dev": {
+    "FIREBASE_URL": "https://luminous-fire-8195.firebaseio.com/"
+  },
+
+  "default": {
+    "FIREBASE_URL": ""
+  }
 }

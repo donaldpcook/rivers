@@ -319,7 +319,8 @@ module.exports = function (grunt) {
       development: {
         options: {
           patterns: [{
-            json: grunt.file.readJSON('./config/environments/development.json')
+            json: grunt.file.readJSON('./config/environments/development.json')[process.env.RIVERS_ENV] ||
+                grunt.file.readJSON('./config/environments/development.json').default
           }]
         },
         files: [{
@@ -404,8 +405,6 @@ module.exports = function (grunt) {
     'test',
     'build'
   ]);
-
-  grunt.loadNpmTasks('grunt-replace');
 
   grunt.registerTask('travis', [
     'replace:travis'
