@@ -1,39 +1,50 @@
 'use strict';
 
-app.factory('AccountService', function ($rootScope, $q, configuration) {
+app.factory('AccountService', function ($rootScope, $q, $firebaseSimpleLogin, configuration) {
 	var ref = new Firebase(configuration.FIREBASE_URL);
 	var user;
 
 	// triggered anytime login state is changed
-	var auth = new FirebaseSimpleLogin(ref, function(error, user) {
-		user = user;
-		$rootScope.$broadcast('user:changed', error, user);
-	});
+	var auth = $firebaseSimpleLogin(ref);
 
 	var login = function(email, password) {
-		auth.login('password', {
-			email: email,
-			password: password
-		});
-	};
-
-	var signup = function(email, password) {
 		var deferred = $q.defer();
 
-		auth.createUser(email, password, function(error, user) {
-			if (error) {
-				deferred.reject(error);
-			} else {
-				deferred.resolve(user);
-			}
+		auth.$login('password', {
+			email: email,
+			password: password,
+			rememberMe: true
+		}).then(function(user) {
+			user = user;
+			deferred.resolve(user);
+		}, function(error) {
+			deferred.reject(error);
 		});
 
 		return deferred.promise;
 	};
 
+	var signup = function(email, password) {
+		var deferred = $q.defer();
+
+		auth.$createUser(email, password).then(function(userOb) {
+			user = userOb;
+			deferred.resolve(user);
+		}, function(error) {
+			deferred.reject(error);
+		});
+
+		return deferred.promise;
+	};
+
+	var getUser = function() {
+		return user;
+	}
+
 	var AccountService = {
 		login: login,
-		signup: signup
+		signup: signup,
+		getUser: getUser
 	};
 
 	return AccountService;
