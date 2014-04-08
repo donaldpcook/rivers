@@ -4,7 +4,6 @@ app.factory('AccountService', function ($rootScope, $q, $firebaseSimpleLogin, co
 	var ref = new Firebase(configuration.FIREBASE_URL);
 	var user;
 
-	// triggered anytime login state is changed
 	var auth = $firebaseSimpleLogin(ref);
 
 	var login = function(email, password) {
@@ -14,8 +13,8 @@ app.factory('AccountService', function ($rootScope, $q, $firebaseSimpleLogin, co
 			email: email,
 			password: password,
 			rememberMe: true
-		}).then(function(user) {
-			user = user;
+		}).then(function(userOb) {
+			user = userOb;
 			deferred.resolve(user);
 		}, function(error) {
 			deferred.reject(error);
@@ -39,7 +38,7 @@ app.factory('AccountService', function ($rootScope, $q, $firebaseSimpleLogin, co
 
 	var getUser = function() {
 		return user;
-	}
+	};
 
 	var AccountService = {
 		login: login,
