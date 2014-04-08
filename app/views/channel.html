@@ -1,7 +1,8 @@
 <h3>{{ channel.name }}</h3>
 
-
-<div ng-repeat="object in channel.objects">
+<button ng-click="sortReverse = false">Sort Ascending</button>
+<button ng-click="sortReverse = true">Sort Descending</button>
+<div ng-repeat="object in channel.objects | orderObjectBy:orderByAttribute:sortReverse">
 	<p>{{ object.text }} <span class="small text-info">{{ object.createdAt | date: 'yyyy-MM-dd hh:mma'}}</span></p>
 </div>
 

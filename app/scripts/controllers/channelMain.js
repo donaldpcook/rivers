@@ -2,6 +2,8 @@
 
 app.controller('ChannelController', function ($scope, $routeParams, ChannelService, objectTypes) {
 	$scope.channel = ChannelService.find($routeParams.channelId);
+	$scope.orderByAttribute = 'createdAt';
+	$scope.sortReverse = false;
 
 	$scope.addMessage = function () {
 		var newChannelObject = $scope.message;
